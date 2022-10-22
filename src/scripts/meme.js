@@ -121,7 +121,7 @@ function PutHashtags(){
 }
 
 // получение случайных индексов
-function Shuffle(data){ 
+function Shuffle(data){
     for (let i = data.length - 1; i > 0; i--){
         let j = Math.floor(Math.random() * (i + 1));
         [data[i], data[j]] = [data[j], data[i]];
@@ -142,6 +142,7 @@ function CreateObject(object){
     let body = document.querySelector(contentBlock);
     let picture = document.createElement('div');
     
+    let pictureHolder = document.createElement('div')
     let pictureImg = document.createElement('img');
     let pictureDescription = document.createElement('p');
     let author = document.createElement('div');
@@ -153,14 +154,14 @@ function CreateObject(object){
     let buttonAdd = document.createElement('button')
     buttonAdd.textContent = 'O';
     buttonAdd.addEventListener("click", function() {
-        let modalWin = document.querySelector("div.main-popup-desks")
-        modalWin.style = "display: block"
+        let modalWin = document.querySelector("div.main-popup-desks-buttons")
+        modalWin.parentElement.style = "display: block"
 
         modalWin.childNodes.forEach( element => element.addEventListener("click", function() {
             PutInDesk(object, element.value)
             console.log(object)
             console.log(element.value)
-            modalWin.style = "display: none"
+            modalWin.parentElement.style = "display: none"
         }))
     })
     
@@ -168,11 +169,11 @@ function CreateObject(object){
         let modalWin = document.querySelector("div.main-popup-report")
         modalWin.style = "display: block"
 
-        document.querySelector("button.button__cancel").addEventListener("click", function() {
+        document.querySelector("button.report__cancel").addEventListener("click", function() {
             modalWin.style = "display: none"
         })
     
-        document.querySelector("button.button__send").addEventListener("click", function() {
+        document.querySelector("button.report__send").addEventListener("click", function() {
             PutIgnorant(object)
             currentContent.then(data => data.splice(data.indexOf(data.find( (element) => element.id == object.id)), 1))
             ClearObjects()
@@ -181,9 +182,16 @@ function CreateObject(object){
         })
     })
 
-    // повесить классы 
-    pictureImg.classList.add('main_picture')
-    buttonAdd.classList.add('main-content-button__add')
+    // повесить классы
+    picture.classList.add('main-content-block')
+    pictureHolder.classList.add('main-content-block-pic')
+    pictureImg.classList.add('main-content-block-pic__item')
+    pictureDescription.classList.add('main-content-block__desc')
+    author.classList.add('main-content-block-author')
+    authorPhoto.classList.add('main-content-block-author__pic')
+    authorName.classList.add('main-content-block-author__name')
+    buttonAdd.classList.add('main-content-block-pic-button__add')
+    buttonReport.classList.add('main-content-block-pic-button__report')
 
     pictureImg.setAttribute("src", object.img)
     pictureDescription.textContent = object.description;
@@ -192,9 +200,10 @@ function CreateObject(object){
 
     author.appendChild(authorPhoto);
     author.appendChild(authorName);
-    picture.appendChild(pictureImg);
-    picture.appendChild(buttonReport)
-    picture.appendChild(buttonAdd) 
+    pictureHolder.appendChild(pictureImg)
+    pictureHolder.appendChild(buttonReport)
+    pictureHolder.appendChild(buttonAdd)
+    picture.appendChild(pictureHolder);
     picture.appendChild(pictureDescription);
     picture.appendChild(author);
     body.appendChild(picture);
@@ -240,7 +249,7 @@ desklist.addEventListener("change", function() {
     currentContent.then(data => CreateObjects(Shuffle(data)))
 })
 
-//PutHashtags()
+PutHashtags()
 var currentContent = GetData()
 currentContent.then(data => CreateObjects(Shuffle(data)))
 
