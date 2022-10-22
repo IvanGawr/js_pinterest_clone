@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pinterest Clone</title>
+
+        <link rel="stylesheet" href="./styles/reset.scss">
+        <link rel="stylesheet" href="./styles/styles.scss">
+    </head>
+    <body>
+        <header class="header">
+            <button id="home" class="header-homelink">Pinterest</button>
+            <div class="header-search">
+                <form id="search" class="header-search-form">
+                    <input type="text" class="header-search-form__input" placeholder="Введите хэштег" id = "search_input" autocomplete="off">
+                </form>   
+            </div>
+            <div class="header-desklist">
+                <div class="header-desklist-wrapper">
+                    <select name="" id="desk_selector" class="header-desklist-wrapper-select">
+                        <option hidden value='default'>Выберите доску</option>
+                        <option value="1">desk 1</option>
+                        <option value="2">desk 2</option>
+                        <option value="3">desk 3</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+        <main class="main">
+            <div class="main-content"></div>
+            <div class="main-popup-desks">
+                <button class="main-popup-desks__button desk_one" value="1">Desk 1</button>
+                <button class="main-popup-desks__button desk_two" value="2">Desk 2</button>
+                <button class="main-popup-desks__button desk_three" value ="3">Desk 3</button>
+            </div>
+            <div class="main-popup-report">
+                <label for="">
+                    <input type="radio" name="reason">
+                    <span>test</span>
+                </label>
+                <label for="">
+                    <input type="radio" name="reason">
+                    <span>test</span>
+                </label>
+                <label for="">
+                    <input type="radio" name="reason">
+                    <span>test</span>
+                </label>
+                <label for="">
+                    <input type="radio" name="reason">
+                    <span>test</span>
+                </label>
+
+                <button class="main-popup-report-button button__cancel">cancel</button>
+                <button class="main-popup-report-button button__send">send</button>
+
+            </div>
+        </main>
+        <script src="./scripts/meme.js"></script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
